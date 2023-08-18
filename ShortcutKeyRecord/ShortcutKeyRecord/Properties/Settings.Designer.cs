@@ -23,15 +23,12 @@ namespace ShortcutKeyRecord.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string 设置 {
+        [global::System.Configuration.DefaultSettingValueAttribute("[{\"ProcessName\":\"EXCEL\",\"KeyMap\":[{\"Key\":\"ctrl+A\",\"Text\":\"全选\"}]}]")]
+        public string KeyMapGroup {
             get {
-                return ((string)(this["设置"]));
-            }
-            set {
-                this["设置"] = value;
+                return ((string)(this["KeyMapGroup"]));
             }
         }
     }

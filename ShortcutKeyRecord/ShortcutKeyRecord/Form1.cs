@@ -1,4 +1,6 @@
-﻿using ReactiveUI;
+﻿using Newtonsoft.Json;
+using ReactiveUI;
+using ShortcutKeyRecord.Config;
 using ShortcutKeyRecord.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -31,6 +33,10 @@ namespace ShortcutKeyRecord
                 //a(this.OneWayBind(ViewModel, vm => vm.Age, v => v.label3.Text));
             });
             ViewModel = new MainVM();
+
+            //加载用户配置
+            string skString = Properties.Settings.Default.KeyMapGroup;
+            List<KeyMapGroup> skConfig = (List<KeyMapGroup>)JsonConvert.DeserializeObject(skString, typeof(List<KeyMapGroup>));
         }
 
         object IViewFor.ViewModel
