@@ -32,7 +32,7 @@ namespace ShortcutKeyRecord
                 this.Bind(ViewModel, vm => vm.NewSKMap, v => v.tb_SKMap.Text);
                 this.Bind(ViewModel, vm => vm.NewSKText, v => v.tb_SKMap.Text);
 
-                
+
                 this.Bind(ViewModel, vm => vm.ProcessNameList, v => v.cb_SKProcessName.DataSource).DisposeWith(a);
 
                 var selectionChanged = Observable.FromEvent<EventHandler, EventArgs>(
@@ -40,6 +40,9 @@ namespace ShortcutKeyRecord
                            ev => cb_SKProcessName.SelectedIndexChanged += ev,
                            ev => cb_SKProcessName.SelectedIndexChanged -= ev);
                 this.Bind(ViewModel, vm => vm.NewProcessName, v => v.cb_SKProcessName.SelectedItem, selectionChanged);
+
+                //始终置顶
+                this.Bind(ViewModel, vm => vm.FixedTop, v => v.TopMost);
                 //a(this.OneWayBind(ViewModel, vm => vm.Id, v => v.label1.Text));
                 //a(this.OneWayBind(ViewModel, vm => vm.Name, v => v.label2.Text));
                 //a(this.OneWayBind(ViewModel, vm => vm.Age, v => v.label3.Text));
@@ -49,6 +52,8 @@ namespace ShortcutKeyRecord
             #region 加载用户配置
             string skString = Properties.Settings.Default.KeyMapGroup;
             List<KeyMapGroup> skConfig = (List<KeyMapGroup>)JsonConvert.DeserializeObject(skString, typeof(List<KeyMapGroup>));
+
+            ViewModel.FixedTop = Properties.Settings.Default.FixedTop;
             #endregion
 
         }
@@ -79,8 +84,9 @@ namespace ShortcutKeyRecord
                     GetWindowThreadProcessId(hWnd, out processId);
                     Process proc = Process.GetProcessById((int)processId);
 
-                    
-                    lbl_currentProcess.Invoke((Action)(() => {
+
+                    lbl_currentProcess.Invoke((Action)(() =>
+                    {
                         if (!ViewModel.ProcessNameList.Contains(proc.ProcessName))
                         {
                             ViewModel.ProcessNameList.Add(proc.ProcessName);
@@ -91,11 +97,11 @@ namespace ShortcutKeyRecord
                             ViewModel.NewProcessName = proc.ProcessName;
                         }
                     }));
-                    
+
                     Thread.Sleep(1000);
                 }
             });
-            
+
         }
 
 
@@ -118,5 +124,51 @@ namespace ShortcutKeyRecord
         #endregion
 
 
+        #region 拖动窗口
+        Point mouseOffset;
+        bool isStartMove = false;
+
+        private void pic_move_MouseDown(object sender, MouseEventArgs e)
+        {
+            //mouseOffset = new Point(-e.X, -e.Y);
+            //isStartMove = true;
+            //拖动窗体
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0);
+        }
+
+        private void pic_move_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isStartMove)
+            {
+
+                //Point mouseSet = Control.MousePosition;
+                //mouseSet.Offset(mouseOffset.X, mouseOffset.Y);  //设置移动后的位置
+                //Location = mouseSet;
+
+            }
+
+        }
+        private void pic_move_MouseUp(object sender, MouseEventArgs e)
+        {
+            //isStartMove = false;
+        }
+
+        [DllImport("user32.dll")]//拖动无窗体的控件
+        public static extern bool ReleaseCapture();
+        [DllImport("user32.dll")]
+        public static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+        public const int WM_SYSCOMMAND = 0x0112;
+        public const int SC_MOVE = 0xF010;
+        public const int HTCAPTION = 0x0002;
+
+        #endregion
+
+        private void cms_t_fixedTop_CheckedChanged(object sender, EventArgs e)
+        {
+            ViewModel.FixedTop = cms_t_fixedTop.Checked;
+            Properties.Settings.Default.FixedTop = ViewModel.FixedTop;
+            Properties.Settings.Default.Save();
+        }
     }
 }

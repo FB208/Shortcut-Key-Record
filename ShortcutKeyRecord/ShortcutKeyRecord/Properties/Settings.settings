@@ -2,8 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ShortcutKeyRecord.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="KeyMapGroup" Type="System.String" Scope="Application">
+    <Setting Name="KeyMapGroup" Type="System.String" Scope="User">
       <Value Profile="(Default)">[{"ProcessName":"EXCEL","KeyMap":[{"Map":"ctrl+A","Text":"全选"}]}]</Value>
+    </Setting>
+    <Setting Name="FixedTop" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

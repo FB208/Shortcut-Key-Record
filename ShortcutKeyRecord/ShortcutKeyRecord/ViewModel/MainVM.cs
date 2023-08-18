@@ -74,6 +74,16 @@ namespace ShortcutKeyRecord.ViewModel
             get => _newSKText;
             set => this.RaiseAndSetIfChanged(ref _newSKText, value);
         }
+
+        private bool _fixedTop;
+        /// <summary>
+        /// 始终置顶
+        /// </summary>
+        public bool FixedTop
+        {
+            get => _fixedTop;
+            set => this.RaiseAndSetIfChanged(ref _fixedTop, value);
+        }
     }
 
 }

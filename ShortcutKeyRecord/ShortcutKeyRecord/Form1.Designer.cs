@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.lbl_currentProcess = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cms_mouseBtnRight = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms_t_fixedTop = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_close = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_SKMap = new System.Windows.Forms.Label();
             this.lbl_SKText = new System.Windows.Forms.Label();
             this.lbl_SKGroupName = new System.Windows.Forms.Label();
@@ -38,10 +41,9 @@
             this.tb_SKText = new System.Windows.Forms.TextBox();
             this.btn_addSK = new System.Windows.Forms.Button();
             this.cb_SKProcessName = new System.Windows.Forms.ComboBox();
-            this.cms_mouseBtnRight = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.始终置顶ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cms_t_close = new System.Windows.Forms.ToolStripMenuItem();
+            this.pic_move = new System.Windows.Forms.PictureBox();
             this.cms_mouseBtnRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_move)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_currentProcess
@@ -60,6 +62,29 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(557, 109);
             this.panel1.TabIndex = 1;
+            // 
+            // cms_mouseBtnRight
+            // 
+            this.cms_mouseBtnRight.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cms_t_fixedTop,
+            this.cms_t_close});
+            this.cms_mouseBtnRight.Name = "cms_mouseBtnRight";
+            this.cms_mouseBtnRight.Size = new System.Drawing.Size(181, 70);
+            // 
+            // cms_t_fixedTop
+            // 
+            this.cms_t_fixedTop.CheckOnClick = true;
+            this.cms_t_fixedTop.Name = "cms_t_fixedTop";
+            this.cms_t_fixedTop.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_fixedTop.Text = "始终置顶";
+            this.cms_t_fixedTop.CheckedChanged += new System.EventHandler(this.cms_t_fixedTop_CheckedChanged);
+            // 
+            // cms_t_close
+            // 
+            this.cms_t_close.Name = "cms_t_close";
+            this.cms_t_close.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_close.Text = "关闭";
+            this.cms_t_close.Click += new System.EventHandler(this.cms_t_close_Click);
             // 
             // lbl_SKMap
             // 
@@ -120,27 +145,19 @@
             this.cb_SKProcessName.Size = new System.Drawing.Size(187, 20);
             this.cb_SKProcessName.TabIndex = 9;
             // 
-            // cms_mouseBtnRight
+            // pic_move
             // 
-            this.cms_mouseBtnRight.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.始终置顶ToolStripMenuItem,
-            this.cms_t_close});
-            this.cms_mouseBtnRight.Name = "cms_mouseBtnRight";
-            this.cms_mouseBtnRight.Size = new System.Drawing.Size(125, 48);
-            // 
-            // 始终置顶ToolStripMenuItem
-            // 
-            this.始终置顶ToolStripMenuItem.CheckOnClick = true;
-            this.始终置顶ToolStripMenuItem.Name = "始终置顶ToolStripMenuItem";
-            this.始终置顶ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.始终置顶ToolStripMenuItem.Text = "始终置顶";
-            // 
-            // cms_t_close
-            // 
-            this.cms_t_close.Name = "cms_t_close";
-            this.cms_t_close.Size = new System.Drawing.Size(124, 22);
-            this.cms_t_close.Text = "关闭";
-            this.cms_t_close.Click += new System.EventHandler(this.cms_t_close_Click);
+            this.pic_move.Cursor = System.Windows.Forms.Cursors.NoMove2D;
+            this.pic_move.Image = global::ShortcutKeyRecord.Properties.Resources.平移;
+            this.pic_move.Location = new System.Drawing.Point(563, 545);
+            this.pic_move.Name = "pic_move";
+            this.pic_move.Size = new System.Drawing.Size(22, 22);
+            this.pic_move.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_move.TabIndex = 10;
+            this.pic_move.TabStop = false;
+            this.pic_move.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pic_move_MouseDown);
+            this.pic_move.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pic_move_MouseMove);
+            this.pic_move.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pic_move_MouseUp);
             // 
             // Form1
             // 
@@ -149,6 +166,7 @@
             this.ClientSize = new System.Drawing.Size(584, 567);
             this.ContextMenuStrip = this.cms_mouseBtnRight;
             this.ControlBox = false;
+            this.Controls.Add(this.pic_move);
             this.Controls.Add(this.cb_SKProcessName);
             this.Controls.Add(this.btn_addSK);
             this.Controls.Add(this.tb_SKText);
@@ -163,6 +181,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.cms_mouseBtnRight.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pic_move)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,8 +199,9 @@
         private System.Windows.Forms.Button btn_addSK;
         private System.Windows.Forms.ComboBox cb_SKProcessName;
         private System.Windows.Forms.ContextMenuStrip cms_mouseBtnRight;
-        private System.Windows.Forms.ToolStripMenuItem 始终置顶ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cms_t_fixedTop;
         private System.Windows.Forms.ToolStripMenuItem cms_t_close;
+        private System.Windows.Forms.PictureBox pic_move;
     }
 }
 
