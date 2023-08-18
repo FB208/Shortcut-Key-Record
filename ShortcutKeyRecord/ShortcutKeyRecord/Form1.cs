@@ -46,9 +46,11 @@ namespace ShortcutKeyRecord
             });
             ViewModel = new MainVM();
 
-            //加载用户配置
+            #region 加载用户配置
             string skString = Properties.Settings.Default.KeyMapGroup;
             List<KeyMapGroup> skConfig = (List<KeyMapGroup>)JsonConvert.DeserializeObject(skString, typeof(List<KeyMapGroup>));
+            #endregion
+
         }
 
         object IViewFor.ViewModel
@@ -105,5 +107,16 @@ namespace ShortcutKeyRecord
         {
 
         }
+
+        #region 右键菜单
+
+
+        private void cms_t_close_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        #endregion
+
+
     }
 }
