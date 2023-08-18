@@ -30,12 +30,13 @@
         {
             this.lbl_currentProcess = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.lbl_SKMap = new System.Windows.Forms.Label();
+            this.lbl_SKText = new System.Windows.Forms.Label();
+            this.lbl_SKGroupName = new System.Windows.Forms.Label();
+            this.tb_SKMap = new System.Windows.Forms.TextBox();
+            this.tb_SKText = new System.Windows.Forms.TextBox();
+            this.btn_addSK = new System.Windows.Forms.Button();
+            this.cb_SKProcessName = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lbl_currentProcess
@@ -51,68 +52,80 @@
             // 
             this.panel1.Location = new System.Drawing.Point(15, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(557, 157);
+            this.panel1.Size = new System.Drawing.Size(557, 109);
             this.panel1.TabIndex = 1;
             // 
-            // label1
+            // lbl_SKMap
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 237);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "label1";
+            this.lbl_SKMap.AutoSize = true;
+            this.lbl_SKMap.Location = new System.Drawing.Point(13, 430);
+            this.lbl_SKMap.Name = "lbl_SKMap";
+            this.lbl_SKMap.Size = new System.Drawing.Size(65, 12);
+            this.lbl_SKMap.TabIndex = 2;
+            this.lbl_SKMap.Text = "添加快捷键";
             // 
-            // label2
+            // lbl_SKText
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 269);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "label2";
+            this.lbl_SKText.AutoSize = true;
+            this.lbl_SKText.Location = new System.Drawing.Point(49, 458);
+            this.lbl_SKText.Name = "lbl_SKText";
+            this.lbl_SKText.Size = new System.Drawing.Size(29, 12);
+            this.lbl_SKText.TabIndex = 3;
+            this.lbl_SKText.Text = "说明";
             // 
-            // label3
+            // lbl_SKGroupName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 302);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "label3";
+            this.lbl_SKGroupName.AutoSize = true;
+            this.lbl_SKGroupName.Location = new System.Drawing.Point(26, 402);
+            this.lbl_SKGroupName.Name = "lbl_SKGroupName";
+            this.lbl_SKGroupName.Size = new System.Drawing.Size(53, 12);
+            this.lbl_SKGroupName.TabIndex = 4;
+            this.lbl_SKGroupName.Text = "特定程序";
             // 
-            // textBox1
+            // tb_SKMap
             // 
-            this.textBox1.Location = new System.Drawing.Point(137, 237);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 5;
+            this.tb_SKMap.Location = new System.Drawing.Point(84, 427);
+            this.tb_SKMap.Name = "tb_SKMap";
+            this.tb_SKMap.Size = new System.Drawing.Size(188, 21);
+            this.tb_SKMap.TabIndex = 5;
             // 
-            // textBox2
+            // tb_SKText
             // 
-            this.textBox2.Location = new System.Drawing.Point(137, 269);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 21);
-            this.textBox2.TabIndex = 6;
+            this.tb_SKText.Location = new System.Drawing.Point(84, 455);
+            this.tb_SKText.Name = "tb_SKText";
+            this.tb_SKText.Size = new System.Drawing.Size(188, 21);
+            this.tb_SKText.TabIndex = 6;
             // 
-            // textBox3
+            // btn_addSK
             // 
-            this.textBox3.Location = new System.Drawing.Point(137, 302);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 21);
-            this.textBox3.TabIndex = 7;
+            this.btn_addSK.Location = new System.Drawing.Point(84, 482);
+            this.btn_addSK.Name = "btn_addSK";
+            this.btn_addSK.Size = new System.Drawing.Size(189, 23);
+            this.btn_addSK.TabIndex = 8;
+            this.btn_addSK.Text = "保存";
+            this.btn_addSK.UseVisualStyleBackColor = true;
+            this.btn_addSK.Click += new System.EventHandler(this.btn_addSK_Click);
+            // 
+            // cb_SKProcessName
+            // 
+            this.cb_SKProcessName.FormattingEnabled = true;
+            this.cb_SKProcessName.Location = new System.Drawing.Point(85, 399);
+            this.cb_SKProcessName.Name = "cb_SKProcessName";
+            this.cb_SKProcessName.Size = new System.Drawing.Size(187, 20);
+            this.cb_SKProcessName.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 461);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(584, 567);
+            this.Controls.Add(this.cb_SKProcessName);
+            this.Controls.Add(this.btn_addSK);
+            this.Controls.Add(this.tb_SKText);
+            this.Controls.Add(this.tb_SKMap);
+            this.Controls.Add(this.lbl_SKGroupName);
+            this.Controls.Add(this.lbl_SKText);
+            this.Controls.Add(this.lbl_SKMap);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbl_currentProcess);
             this.Name = "Form1";
@@ -127,12 +140,13 @@
 
         private System.Windows.Forms.Label lbl_currentProcess;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label lbl_SKMap;
+        private System.Windows.Forms.Label lbl_SKText;
+        private System.Windows.Forms.Label lbl_SKGroupName;
+        private System.Windows.Forms.TextBox tb_SKMap;
+        private System.Windows.Forms.TextBox tb_SKText;
+        private System.Windows.Forms.Button btn_addSK;
+        private System.Windows.Forms.ComboBox cb_SKProcessName;
     }
 }
 

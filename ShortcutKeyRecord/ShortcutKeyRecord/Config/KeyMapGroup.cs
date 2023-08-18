@@ -15,7 +15,7 @@ namespace ShortcutKeyRecord.Config
 
     public class Keymap
     {
-        public string Key { get; set; }
+        public string Map { get; set; }
         public string Text { get; set; }
     }
 

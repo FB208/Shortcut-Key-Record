@@ -1,14 +1,18 @@
 ﻿using Newtonsoft.Json;
 using ReactiveUI;
+using System.Reactive.Disposables;
+using ReactiveUI.Winforms;
 using ShortcutKeyRecord.Config;
 using ShortcutKeyRecord.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -24,10 +28,18 @@ namespace ShortcutKeyRecord
             InitializeComponent();
             this.WhenActivated(a =>
             {
-                a(this.Bind(ViewModel, vm => vm.CurrentProcessName, v => v.lbl_currentProcess.Text));
-                //a(this.Bind(ViewModel, vm => vm.Id, v => v.textBox1.Text));
-                //a(this.Bind(ViewModel, vm => vm.Name, v => v.textBox2.Text));
-                //a(this.Bind(ViewModel, vm => vm.Age, v => v.textBox3.Text));
+                this.Bind(ViewModel, vm => vm.CurrentProcessName, v => v.lbl_currentProcess.Text);
+                this.Bind(ViewModel, vm => vm.NewSKMap, v => v.tb_SKMap.Text);
+                this.Bind(ViewModel, vm => vm.NewSKText, v => v.tb_SKMap.Text);
+
+                
+                this.Bind(ViewModel, vm => vm.ProcessNameList, v => v.cb_SKProcessName.DataSource).DisposeWith(a);
+
+                var selectionChanged = Observable.FromEvent<EventHandler, EventArgs>(
+                           h => (_, e) => h(e),
+                           ev => cb_SKProcessName.SelectedIndexChanged += ev,
+                           ev => cb_SKProcessName.SelectedIndexChanged -= ev);
+                this.Bind(ViewModel, vm => vm.NewProcessName, v => v.cb_SKProcessName.SelectedItem, selectionChanged);
                 //a(this.OneWayBind(ViewModel, vm => vm.Id, v => v.label1.Text));
                 //a(this.OneWayBind(ViewModel, vm => vm.Name, v => v.label2.Text));
                 //a(this.OneWayBind(ViewModel, vm => vm.Age, v => v.label3.Text));
@@ -60,20 +72,38 @@ namespace ShortcutKeyRecord
             {
                 while (true)
                 {
-
-                    
                     IntPtr hWnd = GetForegroundWindow();
                     uint processId;
                     GetWindowThreadProcessId(hWnd, out processId);
                     Process proc = Process.GetProcessById((int)processId);
+
+                    
                     lbl_currentProcess.Invoke((Action)(() => {
+                        if (!ViewModel.ProcessNameList.Contains(proc.ProcessName))
+                        {
+                            ViewModel.ProcessNameList.Add(proc.ProcessName);
+                        }
                         ViewModel.CurrentProcessName = proc.ProcessName;
+                        if (!proc.ProcessName.Equals("ShortcutKeyRecord"))
+                        {
+                            ViewModel.NewProcessName = proc.ProcessName;
+                        }
                     }));
                     
                     Thread.Sleep(1000);
                 }
             });
             
+        }
+
+
+        #region 控件数据绑定
+
+        #endregion
+
+        private void btn_addSK_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

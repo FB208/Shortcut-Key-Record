@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="KeyMapGroup" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">[{"ProcessName":"EXCEL","KeyMap":[{"Key":"ctrl+A","Text":"全选"}]}]</Value>
+      <Value Profile="(Default)">[{"ProcessName":"EXCEL","KeyMap":[{"Map":"ctrl+A","Text":"全选"}]}]</Value>
     </Setting>
   </Settings>
 </SettingsFile>
