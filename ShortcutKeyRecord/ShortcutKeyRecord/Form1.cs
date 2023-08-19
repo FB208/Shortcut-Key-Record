@@ -23,14 +23,16 @@ namespace ShortcutKeyRecord
 {
     public partial class Form1 : Form, IViewFor<MainVM>
     {
+        List<KeyMapGroup> skConfig;
         public Form1()
         {
             InitializeComponent();
             this.WhenActivated(a =>
             {
                 this.Bind(ViewModel, vm => vm.CurrentProcessName, v => v.lbl_currentProcess.Text);
+                this.Bind(ViewModel, vm => vm.CurrentProcessName, v => v.gb_currentProcess.Text);
                 this.Bind(ViewModel, vm => vm.NewSKMap, v => v.tb_SKMap.Text);
-                this.Bind(ViewModel, vm => vm.NewSKText, v => v.tb_SKMap.Text);
+                this.Bind(ViewModel, vm => vm.NewSKText, v => v.tb_SKText.Text);
 
 
                 this.Bind(ViewModel, vm => vm.ProcessNameList, v => v.cb_SKProcessName.DataSource).DisposeWith(a);
@@ -51,9 +53,11 @@ namespace ShortcutKeyRecord
 
             #region 加载用户配置
             string skString = Properties.Settings.Default.KeyMapGroup;
-            List<KeyMapGroup> skConfig = (List<KeyMapGroup>)JsonConvert.DeserializeObject(skString, typeof(List<KeyMapGroup>));
+            skConfig = (List<KeyMapGroup>)JsonConvert.DeserializeObject(skString, typeof(List<KeyMapGroup>));
 
             ViewModel.FixedTop = Properties.Settings.Default.FixedTop;
+
+            this.BindAllKeymap();
             #endregion
 
         }
@@ -85,7 +89,7 @@ namespace ShortcutKeyRecord
                     Process proc = Process.GetProcessById((int)processId);
 
 
-                    lbl_currentProcess.Invoke((Action)(() =>
+                    gb_currentProcess.Invoke((Action)(() =>
                     {
                         if (!ViewModel.ProcessNameList.Contains(proc.ProcessName))
                         {
@@ -106,7 +110,27 @@ namespace ShortcutKeyRecord
 
 
         #region 控件数据绑定
-
+        private void BindAllKeymap()
+        {
+            int row = 0;
+            foreach (var sk in skConfig)
+            {
+                string name = sk.ProcessName;
+                foreach (var km in sk.KeyMap)
+                {
+                    string skMap = km.Map;
+                    string skText = km.Text;
+                    Label lbl_Map = new Label() { Text=skMap,Size=new Size(150,20),Location=new Point(10,10+30*row) };
+                    Label lbl_Text = new Label() { Text = skText, Size = new Size(150, 20), Location = new Point(160, 10 + 30 * row) };
+                    Label lbl_Name = new Label() { Text = name, Size = new Size(150, 20), Location = new Point(320, 10 + 30 * row) };
+                    this.p_allProcess.Controls.Add(lbl_Map);
+                    this.p_allProcess.Controls.Add(lbl_Text);
+                    this.p_allProcess.Controls.Add(lbl_Name);
+                    row++;
+                }
+                
+            }        
+        }
         #endregion
 
         /// <summary>
@@ -116,12 +140,40 @@ namespace ShortcutKeyRecord
         /// <param name="e"></param>
         private void btn_addSK_Click(object sender, EventArgs e)
         {
-            //KeyMapGroup 
+            KeyMapGroup keyMapGroup = new KeyMapGroup();
+            keyMapGroup.ProcessName = ViewModel.NewProcessName;
+            List<Keymap> keymaps = new List<Keymap>();
+            Keymap keymap = new Keymap();
+            keymap.Map = ViewModel.NewSKMap;
+            keymap.Text = ViewModel.NewSKText;
+            keymaps.Add(keymap);
+            keyMapGroup.KeyMap = keymaps;
+            
+            //更新并保存配置
+            skConfig.Add(keyMapGroup);
+            this.BindAllKeymap();
+            string skString = JsonConvert.SerializeObject(skConfig);
+            Properties.Settings.Default.KeyMapGroup = skString;
+            Properties.Settings.Default.Save();
         }
 
         #region 右键菜单
-
-
+        /// <summary>
+        /// 切换是否置顶
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cms_t_fixedTop_CheckedChanged(object sender, EventArgs e)
+        {
+            ViewModel.FixedTop = cms_t_fixedTop.Checked;
+            Properties.Settings.Default.FixedTop = ViewModel.FixedTop;
+            Properties.Settings.Default.Save();
+        }
+        /// <summary>
+        /// 关闭程序
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cms_t_close_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -169,11 +221,5 @@ namespace ShortcutKeyRecord
 
         #endregion
 
-        private void cms_t_fixedTop_CheckedChanged(object sender, EventArgs e)
-        {
-            ViewModel.FixedTop = cms_t_fixedTop.Checked;
-            Properties.Settings.Default.FixedTop = ViewModel.FixedTop;
-            Properties.Settings.Default.Save();
-        }
     }
 }

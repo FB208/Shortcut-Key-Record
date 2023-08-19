@@ -10,7 +10,7 @@ namespace ShortcutKeyRecord.Config
     public class KeyMapGroup
     {
         public string ProcessName { get; set; }
-        public Keymap[] KeyMap { get; set; }
+        public List<Keymap> KeyMap { get; set; }
     }
 
     public class Keymap

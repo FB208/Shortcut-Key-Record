@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lbl_currentProcess = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.cms_mouseBtnRight = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cms_t_fixedTop = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_t_close = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,26 +42,24 @@
             this.btn_addSK = new System.Windows.Forms.Button();
             this.cb_SKProcessName = new System.Windows.Forms.ComboBox();
             this.pic_move = new System.Windows.Forms.PictureBox();
+            this.gb_currentProcess = new System.Windows.Forms.GroupBox();
+            this.p_currentProcess = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.p_allProcess = new System.Windows.Forms.Panel();
             this.cms_mouseBtnRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_move)).BeginInit();
+            this.gb_currentProcess.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_currentProcess
             // 
             this.lbl_currentProcess.AutoSize = true;
-            this.lbl_currentProcess.Location = new System.Drawing.Point(13, 13);
+            this.lbl_currentProcess.Location = new System.Drawing.Point(10, 333);
             this.lbl_currentProcess.Name = "lbl_currentProcess";
             this.lbl_currentProcess.Size = new System.Drawing.Size(41, 12);
             this.lbl_currentProcess.TabIndex = 0;
             this.lbl_currentProcess.Text = "label1";
-            // 
-            // panel1
-            // 
-            this.panel1.ContextMenuStrip = this.cms_mouseBtnRight;
-            this.panel1.Location = new System.Drawing.Point(15, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(557, 109);
-            this.panel1.TabIndex = 1;
             // 
             // cms_mouseBtnRight
             // 
@@ -160,6 +157,42 @@
             this.pic_move.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pic_move_MouseMove);
             this.pic_move.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pic_move_MouseUp);
             // 
+            // gb_currentProcess
+            // 
+            this.gb_currentProcess.Controls.Add(this.p_currentProcess);
+            this.gb_currentProcess.Location = new System.Drawing.Point(12, 12);
+            this.gb_currentProcess.Name = "gb_currentProcess";
+            this.gb_currentProcess.Size = new System.Drawing.Size(560, 105);
+            this.gb_currentProcess.TabIndex = 11;
+            this.gb_currentProcess.TabStop = false;
+            this.gb_currentProcess.Text = "groupBox1";
+            // 
+            // p_currentProcess
+            // 
+            this.p_currentProcess.AutoScroll = true;
+            this.p_currentProcess.Location = new System.Drawing.Point(6, 20);
+            this.p_currentProcess.Name = "p_currentProcess";
+            this.p_currentProcess.Size = new System.Drawing.Size(548, 79);
+            this.p_currentProcess.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.p_allProcess);
+            this.groupBox1.Location = new System.Drawing.Point(12, 124);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(560, 196);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "AllKey";
+            // 
+            // p_allProcess
+            // 
+            this.p_allProcess.AutoScroll = true;
+            this.p_allProcess.Location = new System.Drawing.Point(6, 20);
+            this.p_allProcess.Name = "p_allProcess";
+            this.p_allProcess.Size = new System.Drawing.Size(548, 170);
+            this.p_allProcess.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -167,6 +200,8 @@
             this.ClientSize = new System.Drawing.Size(584, 567);
             this.ContextMenuStrip = this.cms_mouseBtnRight;
             this.ControlBox = false;
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gb_currentProcess);
             this.Controls.Add(this.pic_move);
             this.Controls.Add(this.cb_SKProcessName);
             this.Controls.Add(this.btn_addSK);
@@ -175,7 +210,6 @@
             this.Controls.Add(this.lbl_SKGroupName);
             this.Controls.Add(this.lbl_SKText);
             this.Controls.Add(this.lbl_SKMap);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbl_currentProcess);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -184,6 +218,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.cms_mouseBtnRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_move)).EndInit();
+            this.gb_currentProcess.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,7 +228,6 @@
         #endregion
 
         private System.Windows.Forms.Label lbl_currentProcess;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbl_SKMap;
         private System.Windows.Forms.Label lbl_SKText;
         private System.Windows.Forms.Label lbl_SKGroupName;
@@ -204,6 +239,10 @@
         private System.Windows.Forms.ToolStripMenuItem cms_t_fixedTop;
         private System.Windows.Forms.ToolStripMenuItem cms_t_close;
         private System.Windows.Forms.PictureBox pic_move;
+        private System.Windows.Forms.GroupBox gb_currentProcess;
+        private System.Windows.Forms.Panel p_currentProcess;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel p_allProcess;
     }
 }
 
