@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lbl_currentProcess = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cms_mouseBtnRight = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -69,20 +70,20 @@
             this.cms_t_fixedTop,
             this.cms_t_close});
             this.cms_mouseBtnRight.Name = "cms_mouseBtnRight";
-            this.cms_mouseBtnRight.Size = new System.Drawing.Size(181, 70);
+            this.cms_mouseBtnRight.Size = new System.Drawing.Size(125, 48);
             // 
             // cms_t_fixedTop
             // 
             this.cms_t_fixedTop.CheckOnClick = true;
             this.cms_t_fixedTop.Name = "cms_t_fixedTop";
-            this.cms_t_fixedTop.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_fixedTop.Size = new System.Drawing.Size(124, 22);
             this.cms_t_fixedTop.Text = "始终置顶";
             this.cms_t_fixedTop.CheckedChanged += new System.EventHandler(this.cms_t_fixedTop_CheckedChanged);
             // 
             // cms_t_close
             // 
             this.cms_t_close.Name = "cms_t_close";
-            this.cms_t_close.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_close.Size = new System.Drawing.Size(124, 22);
             this.cms_t_close.Text = "关闭";
             this.cms_t_close.Click += new System.EventHandler(this.cms_t_close_Click);
             // 
@@ -177,6 +178,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lbl_currentProcess);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

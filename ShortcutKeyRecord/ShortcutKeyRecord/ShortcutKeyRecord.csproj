@@ -32,6 +32,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="DynamicData, Version=7.14.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicData.7.14.2\lib\net462\DynamicData.dll</HintPath>
@@ -112,6 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\平移.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon %282%29.ico" />
+    <Content Include="favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
