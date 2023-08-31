@@ -54,15 +54,8 @@ namespace ShortcutKeyRecord
             });
             ViewModel = new MainVM();
 
-            #region 加载用户配置
-            string skString = Properties.Settings.Default.KeyMapGroup;
-            skConfig = (List<KeyMapGroup>)JsonConvert.DeserializeObject(skString, typeof(List<KeyMapGroup>));
 
-            ViewModel.FixedTop = Properties.Settings.Default.FixedTop;
-
-            this.BindAllKeymap();
-            #endregion
-
+            LoadUserSetting();
             //#region 样式
             //foreach (Control ctrl in this.Controls)
             //{
@@ -117,10 +110,23 @@ namespace ShortcutKeyRecord
 
         }
 
+        /// <summary>
+        /// 重新加载用户配置
+        /// </summary>
+        private void LoadUserSetting()
+        {
+            string skString = Properties.Settings.Default.KeyMapGroup;
+            skConfig = (List<KeyMapGroup>)JsonConvert.DeserializeObject(skString, typeof(List<KeyMapGroup>));
+
+            ViewModel.FixedTop = Properties.Settings.Default.FixedTop;
+
+            this.BindAllKeymap();
+        }
 
         #region 控件数据绑定
         private void BindAllKeymap()
         {
+            this.p_allProcess.Controls.Clear();
             int row = 0;
             foreach (var sk in skConfig)
             {
@@ -188,7 +194,63 @@ namespace ShortcutKeyRecord
             System.Windows.Forms.Application.Exit();
         }
 
- 
+        /// <summary>
+        /// 导出用户配置文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cms_t_config_export_Click(object sender, EventArgs e)
+        {
+            string exportPath = "";
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                exportPath = dialog.SelectedPath + "/ShortcutKeyRecord.config.json";
+            }
+            // 获取用户配置
+            List<ExportModel> exportModels = new List<ExportModel>();
+            ExportModel exportModel = null;
+            foreach (System.Configuration.SettingsPropertyValue item in Properties.Settings.Default.PropertyValues)
+            {
+                exportModel = new ExportModel();
+                exportModel.Key = item.Name;
+                exportModel.Value = item.PropertyValue.ToString();
+                exportModels.Add(exportModel);
+            }
+            string json = JsonConvert.SerializeObject(exportModels, Formatting.Indented);
+
+
+            // 保存配置到文件
+            File.WriteAllText(exportPath, json);
+            MessageBox.Show("导出成功");
+        }
+
+        /// <summary>
+        /// 导入用户配置文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cms_t_config_input_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Config|*.config.json";
+            string inputPath="";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                inputPath = dialog.FileName;
+            }
+            StreamReader reader = new StreamReader(inputPath);
+            string json = reader.ReadToEnd();
+            reader.Close();
+            List<ExportModel> exportModels = JsonConvert.DeserializeObject<List<ExportModel>>(json);
+            foreach (ExportModel exportModel in exportModels)
+            {
+                Properties.Settings.Default[exportModel.Key]= Convert.ChangeType(exportModel.Value, Properties.Settings.Default[exportModel.Key].GetType());
+            }
+            Properties.Settings.Default.Save();
+            this.LoadUserSetting();
+            MessageBox.Show("导入成功");
+        }
         #endregion
 
 
@@ -233,30 +295,6 @@ namespace ShortcutKeyRecord
 
         #endregion
 
-        private void cms_t_config_export_Click(object sender, EventArgs e)
-        {
-            string exportPath = "";
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                exportPath = dialog.SelectedPath+"/ShortcutKeyRecord.config.json";
-            }
-            // 获取用户配置
-            List<ExportModel> exportModels = new List<ExportModel>();
-            ExportModel exportModel = null;
-            foreach (System.Configuration.SettingsPropertyValue item in Properties.Settings.Default.PropertyValues)
-            {
-                exportModel = new ExportModel();
-                exportModel.Key = item.Name;
-                exportModel.Value = item.PropertyValue.ToString();
-                exportModels.Add(exportModel);
-            }
-            string json = JsonConvert.SerializeObject(exportModels, Formatting.Indented);
-
-
-            // 保存配置到文件
-            File.WriteAllText(exportPath, json);
-            MessageBox.Show("导出成功");
-        }
+      
     }
 }

@@ -33,6 +33,12 @@
             this.lbl_currentProcess = new System.Windows.Forms.Label();
             this.cms_mouseBtnRight = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cms_t_fixedTop = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_config = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_config_export = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_config_input = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_config_upload = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_config_download = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_config_autosync = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_t_close = new System.Windows.Forms.ToolStripMenuItem();
             this.lbl_SKMap = new System.Windows.Forms.Label();
             this.lbl_SKText = new System.Windows.Forms.Label();
@@ -41,21 +47,15 @@
             this.tb_SKText = new System.Windows.Forms.TextBox();
             this.btn_addSK = new System.Windows.Forms.Button();
             this.cb_SKProcessName = new System.Windows.Forms.ComboBox();
-            this.pic_move = new System.Windows.Forms.PictureBox();
             this.gb_currentProcess = new System.Windows.Forms.GroupBox();
             this.p_currentProcess = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.p_allProcess = new System.Windows.Forms.Panel();
-            this.cms_t_config = new System.Windows.Forms.ToolStripMenuItem();
-            this.cms_t_config_export = new System.Windows.Forms.ToolStripMenuItem();
-            this.cms_t_config_input = new System.Windows.Forms.ToolStripMenuItem();
-            this.cms_t_config_upload = new System.Windows.Forms.ToolStripMenuItem();
-            this.cms_t_config_download = new System.Windows.Forms.ToolStripMenuItem();
-            this.cms_t_config_autosync = new System.Windows.Forms.ToolStripMenuItem();
+            this.pic_move = new System.Windows.Forms.PictureBox();
             this.cms_mouseBtnRight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_move)).BeginInit();
             this.gb_currentProcess.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_move)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_currentProcess
@@ -77,20 +77,64 @@
             this.cms_t_config,
             this.cms_t_close});
             this.cms_mouseBtnRight.Name = "cms_mouseBtnRight";
-            this.cms_mouseBtnRight.Size = new System.Drawing.Size(181, 92);
+            this.cms_mouseBtnRight.Size = new System.Drawing.Size(125, 70);
             // 
             // cms_t_fixedTop
             // 
             this.cms_t_fixedTop.CheckOnClick = true;
             this.cms_t_fixedTop.Name = "cms_t_fixedTop";
-            this.cms_t_fixedTop.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_fixedTop.Size = new System.Drawing.Size(124, 22);
             this.cms_t_fixedTop.Text = "始终置顶";
             this.cms_t_fixedTop.CheckedChanged += new System.EventHandler(this.cms_t_fixedTop_CheckedChanged);
+            // 
+            // cms_t_config
+            // 
+            this.cms_t_config.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cms_t_config_export,
+            this.cms_t_config_input,
+            this.cms_t_config_upload,
+            this.cms_t_config_download,
+            this.cms_t_config_autosync});
+            this.cms_t_config.Name = "cms_t_config";
+            this.cms_t_config.Size = new System.Drawing.Size(124, 22);
+            this.cms_t_config.Text = "配置文件";
+            // 
+            // cms_t_config_export
+            // 
+            this.cms_t_config_export.Name = "cms_t_config_export";
+            this.cms_t_config_export.Size = new System.Drawing.Size(148, 22);
+            this.cms_t_config_export.Text = "导出";
+            this.cms_t_config_export.Click += new System.EventHandler(this.cms_t_config_export_Click);
+            // 
+            // cms_t_config_input
+            // 
+            this.cms_t_config_input.Name = "cms_t_config_input";
+            this.cms_t_config_input.Size = new System.Drawing.Size(148, 22);
+            this.cms_t_config_input.Text = "导入";
+            this.cms_t_config_input.Click += new System.EventHandler(this.cms_t_config_input_Click);
+            // 
+            // cms_t_config_upload
+            // 
+            this.cms_t_config_upload.Name = "cms_t_config_upload";
+            this.cms_t_config_upload.Size = new System.Drawing.Size(148, 22);
+            this.cms_t_config_upload.Text = "云端上传";
+            // 
+            // cms_t_config_download
+            // 
+            this.cms_t_config_download.Name = "cms_t_config_download";
+            this.cms_t_config_download.Size = new System.Drawing.Size(148, 22);
+            this.cms_t_config_download.Text = "云端下载";
+            // 
+            // cms_t_config_autosync
+            // 
+            this.cms_t_config_autosync.Name = "cms_t_config_autosync";
+            this.cms_t_config_autosync.Size = new System.Drawing.Size(148, 22);
+            this.cms_t_config_autosync.Text = "云端自动同步";
             // 
             // cms_t_close
             // 
             this.cms_t_close.Name = "cms_t_close";
-            this.cms_t_close.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_close.Size = new System.Drawing.Size(124, 22);
             this.cms_t_close.Text = "关闭";
             this.cms_t_close.Click += new System.EventHandler(this.cms_t_close_Click);
             // 
@@ -170,21 +214,6 @@
             this.cb_SKProcessName.Size = new System.Drawing.Size(187, 24);
             this.cb_SKProcessName.TabIndex = 9;
             // 
-            // pic_move
-            // 
-            this.pic_move.BackColor = System.Drawing.Color.Transparent;
-            this.pic_move.Cursor = System.Windows.Forms.Cursors.NoMove2D;
-            this.pic_move.Image = global::ShortcutKeyRecord.Properties.Resources.平移;
-            this.pic_move.Location = new System.Drawing.Point(563, 545);
-            this.pic_move.Name = "pic_move";
-            this.pic_move.Size = new System.Drawing.Size(22, 22);
-            this.pic_move.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pic_move.TabIndex = 10;
-            this.pic_move.TabStop = false;
-            this.pic_move.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pic_move_MouseDown);
-            this.pic_move.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pic_move_MouseMove);
-            this.pic_move.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pic_move_MouseUp);
-            // 
             // gb_currentProcess
             // 
             this.gb_currentProcess.BackColor = System.Drawing.Color.Transparent;
@@ -228,54 +257,27 @@
             this.p_allProcess.Size = new System.Drawing.Size(548, 170);
             this.p_allProcess.TabIndex = 0;
             // 
-            // cms_t_config
+            // pic_move
             // 
-            this.cms_t_config.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cms_t_config_export,
-            this.cms_t_config_input,
-            this.cms_t_config_upload,
-            this.cms_t_config_download,
-            this.cms_t_config_autosync});
-            this.cms_t_config.Name = "cms_t_config";
-            this.cms_t_config.Size = new System.Drawing.Size(180, 22);
-            this.cms_t_config.Text = "配置文件";
-            // 
-            // cms_t_config_export
-            // 
-            this.cms_t_config_export.Name = "cms_t_config_export";
-            this.cms_t_config_export.Size = new System.Drawing.Size(180, 22);
-            this.cms_t_config_export.Text = "导出";
-            this.cms_t_config_export.Click += new System.EventHandler(this.cms_t_config_export_Click);
-            // 
-            // cms_t_config_input
-            // 
-            this.cms_t_config_input.Name = "cms_t_config_input";
-            this.cms_t_config_input.Size = new System.Drawing.Size(180, 22);
-            this.cms_t_config_input.Text = "导入";
-            // 
-            // cms_t_config_upload
-            // 
-            this.cms_t_config_upload.Name = "cms_t_config_upload";
-            this.cms_t_config_upload.Size = new System.Drawing.Size(180, 22);
-            this.cms_t_config_upload.Text = "云端上传";
-            // 
-            // cms_t_config_download
-            // 
-            this.cms_t_config_download.Name = "cms_t_config_download";
-            this.cms_t_config_download.Size = new System.Drawing.Size(180, 22);
-            this.cms_t_config_download.Text = "云端下载";
-            // 
-            // cms_t_config_autosync
-            // 
-            this.cms_t_config_autosync.Name = "cms_t_config_autosync";
-            this.cms_t_config_autosync.Size = new System.Drawing.Size(180, 22);
-            this.cms_t_config_autosync.Text = "云端自动同步";
+            this.pic_move.BackColor = System.Drawing.Color.Transparent;
+            this.pic_move.Cursor = System.Windows.Forms.Cursors.NoMove2D;
+            this.pic_move.Image = global::ShortcutKeyRecord.Properties.Resources.平移;
+            this.pic_move.Location = new System.Drawing.Point(563, 545);
+            this.pic_move.Name = "pic_move";
+            this.pic_move.Size = new System.Drawing.Size(22, 22);
+            this.pic_move.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_move.TabIndex = 10;
+            this.pic_move.TabStop = false;
+            this.pic_move.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pic_move_MouseDown);
+            this.pic_move.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pic_move_MouseMove);
+            this.pic_move.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pic_move_MouseUp);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackgroundImage = global::ShortcutKeyRecord.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(584, 567);
             this.ContextMenuStrip = this.cms_mouseBtnRight;
             this.ControlBox = false;
@@ -296,9 +298,9 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.cms_mouseBtnRight.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pic_move)).EndInit();
             this.gb_currentProcess.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pic_move)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
