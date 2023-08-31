@@ -18,6 +18,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ShortcutKeyRecord
 {
@@ -182,8 +185,10 @@ namespace ShortcutKeyRecord
         /// <param name="e"></param>
         private void cms_t_close_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
+
+ 
         #endregion
 
 
@@ -225,7 +230,33 @@ namespace ShortcutKeyRecord
         public const int SC_MOVE = 0xF010;
         public const int HTCAPTION = 0x0002;
 
+
         #endregion
 
+        private void cms_t_config_export_Click(object sender, EventArgs e)
+        {
+            string exportPath = "";
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                exportPath = dialog.SelectedPath+"/ShortcutKeyRecord.config.json";
+            }
+            // 获取用户配置
+            List<ExportModel> exportModels = new List<ExportModel>();
+            ExportModel exportModel = null;
+            foreach (System.Configuration.SettingsPropertyValue item in Properties.Settings.Default.PropertyValues)
+            {
+                exportModel = new ExportModel();
+                exportModel.Key = item.Name;
+                exportModel.Value = item.PropertyValue.ToString();
+                exportModels.Add(exportModel);
+            }
+            string json = JsonConvert.SerializeObject(exportModels, Formatting.Indented);
+
+
+            // 保存配置到文件
+            File.WriteAllText(exportPath, json);
+            MessageBox.Show("导出成功");
+        }
     }
 }

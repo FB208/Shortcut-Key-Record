@@ -46,6 +46,12 @@
             this.p_currentProcess = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.p_allProcess = new System.Windows.Forms.Panel();
+            this.cms_t_config = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_config_export = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_config_input = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_config_upload = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_config_download = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_t_config_autosync = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_mouseBtnRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_move)).BeginInit();
             this.gb_currentProcess.SuspendLayout();
@@ -68,22 +74,23 @@
             // 
             this.cms_mouseBtnRight.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cms_t_fixedTop,
+            this.cms_t_config,
             this.cms_t_close});
             this.cms_mouseBtnRight.Name = "cms_mouseBtnRight";
-            this.cms_mouseBtnRight.Size = new System.Drawing.Size(125, 48);
+            this.cms_mouseBtnRight.Size = new System.Drawing.Size(181, 92);
             // 
             // cms_t_fixedTop
             // 
             this.cms_t_fixedTop.CheckOnClick = true;
             this.cms_t_fixedTop.Name = "cms_t_fixedTop";
-            this.cms_t_fixedTop.Size = new System.Drawing.Size(124, 22);
+            this.cms_t_fixedTop.Size = new System.Drawing.Size(180, 22);
             this.cms_t_fixedTop.Text = "始终置顶";
             this.cms_t_fixedTop.CheckedChanged += new System.EventHandler(this.cms_t_fixedTop_CheckedChanged);
             // 
             // cms_t_close
             // 
             this.cms_t_close.Name = "cms_t_close";
-            this.cms_t_close.Size = new System.Drawing.Size(124, 22);
+            this.cms_t_close.Size = new System.Drawing.Size(180, 22);
             this.cms_t_close.Text = "关闭";
             this.cms_t_close.Click += new System.EventHandler(this.cms_t_close_Click);
             // 
@@ -221,6 +228,49 @@
             this.p_allProcess.Size = new System.Drawing.Size(548, 170);
             this.p_allProcess.TabIndex = 0;
             // 
+            // cms_t_config
+            // 
+            this.cms_t_config.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cms_t_config_export,
+            this.cms_t_config_input,
+            this.cms_t_config_upload,
+            this.cms_t_config_download,
+            this.cms_t_config_autosync});
+            this.cms_t_config.Name = "cms_t_config";
+            this.cms_t_config.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_config.Text = "配置文件";
+            // 
+            // cms_t_config_export
+            // 
+            this.cms_t_config_export.Name = "cms_t_config_export";
+            this.cms_t_config_export.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_config_export.Text = "导出";
+            this.cms_t_config_export.Click += new System.EventHandler(this.cms_t_config_export_Click);
+            // 
+            // cms_t_config_input
+            // 
+            this.cms_t_config_input.Name = "cms_t_config_input";
+            this.cms_t_config_input.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_config_input.Text = "导入";
+            // 
+            // cms_t_config_upload
+            // 
+            this.cms_t_config_upload.Name = "cms_t_config_upload";
+            this.cms_t_config_upload.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_config_upload.Text = "云端上传";
+            // 
+            // cms_t_config_download
+            // 
+            this.cms_t_config_download.Name = "cms_t_config_download";
+            this.cms_t_config_download.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_config_download.Text = "云端下载";
+            // 
+            // cms_t_config_autosync
+            // 
+            this.cms_t_config_autosync.Name = "cms_t_config_autosync";
+            this.cms_t_config_autosync.Size = new System.Drawing.Size(180, 22);
+            this.cms_t_config_autosync.Text = "云端自动同步";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -272,6 +322,12 @@
         private System.Windows.Forms.Panel p_currentProcess;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel p_allProcess;
+        private System.Windows.Forms.ToolStripMenuItem cms_t_config;
+        private System.Windows.Forms.ToolStripMenuItem cms_t_config_export;
+        private System.Windows.Forms.ToolStripMenuItem cms_t_config_input;
+        private System.Windows.Forms.ToolStripMenuItem cms_t_config_upload;
+        private System.Windows.Forms.ToolStripMenuItem cms_t_config_download;
+        private System.Windows.Forms.ToolStripMenuItem cms_t_config_autosync;
     }
 }
 
