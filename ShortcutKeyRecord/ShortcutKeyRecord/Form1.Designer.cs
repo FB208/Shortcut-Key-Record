@@ -165,7 +165,7 @@
             // 
             // pic_move
             // 
-            this.pic_move.BackColor = System.Drawing.SystemColors.Control;
+            this.pic_move.BackColor = System.Drawing.Color.Transparent;
             this.pic_move.Cursor = System.Windows.Forms.Cursors.NoMove2D;
             this.pic_move.Image = global::ShortcutKeyRecord.Properties.Resources.平移;
             this.pic_move.Location = new System.Drawing.Point(563, 545);
