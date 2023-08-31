@@ -55,9 +55,12 @@
             // lbl_currentProcess
             // 
             this.lbl_currentProcess.AutoSize = true;
+            this.lbl_currentProcess.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_currentProcess.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_currentProcess.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbl_currentProcess.Location = new System.Drawing.Point(10, 333);
             this.lbl_currentProcess.Name = "lbl_currentProcess";
-            this.lbl_currentProcess.Size = new System.Drawing.Size(41, 12);
+            this.lbl_currentProcess.Size = new System.Drawing.Size(55, 16);
             this.lbl_currentProcess.TabIndex = 0;
             this.lbl_currentProcess.Text = "label1";
             // 
@@ -87,49 +90,63 @@
             // lbl_SKMap
             // 
             this.lbl_SKMap.AutoSize = true;
-            this.lbl_SKMap.Location = new System.Drawing.Point(13, 430);
+            this.lbl_SKMap.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_SKMap.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_SKMap.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbl_SKMap.Location = new System.Drawing.Point(13, 436);
             this.lbl_SKMap.Name = "lbl_SKMap";
-            this.lbl_SKMap.Size = new System.Drawing.Size(65, 12);
+            this.lbl_SKMap.Size = new System.Drawing.Size(87, 16);
             this.lbl_SKMap.TabIndex = 2;
             this.lbl_SKMap.Text = "添加快捷键";
             // 
             // lbl_SKText
             // 
             this.lbl_SKText.AutoSize = true;
-            this.lbl_SKText.Location = new System.Drawing.Point(49, 458);
+            this.lbl_SKText.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_SKText.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_SKText.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbl_SKText.Location = new System.Drawing.Point(61, 472);
             this.lbl_SKText.Name = "lbl_SKText";
-            this.lbl_SKText.Size = new System.Drawing.Size(29, 12);
+            this.lbl_SKText.Size = new System.Drawing.Size(39, 16);
             this.lbl_SKText.TabIndex = 3;
             this.lbl_SKText.Text = "说明";
             // 
             // lbl_SKGroupName
             // 
             this.lbl_SKGroupName.AutoSize = true;
-            this.lbl_SKGroupName.Location = new System.Drawing.Point(26, 402);
+            this.lbl_SKGroupName.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_SKGroupName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl_SKGroupName.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lbl_SKGroupName.Location = new System.Drawing.Point(29, 400);
             this.lbl_SKGroupName.Name = "lbl_SKGroupName";
-            this.lbl_SKGroupName.Size = new System.Drawing.Size(53, 12);
+            this.lbl_SKGroupName.Size = new System.Drawing.Size(71, 16);
             this.lbl_SKGroupName.TabIndex = 4;
             this.lbl_SKGroupName.Text = "特定程序";
             // 
             // tb_SKMap
             // 
-            this.tb_SKMap.Location = new System.Drawing.Point(84, 427);
+            this.tb_SKMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_SKMap.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_SKMap.Location = new System.Drawing.Point(102, 432);
             this.tb_SKMap.Name = "tb_SKMap";
-            this.tb_SKMap.Size = new System.Drawing.Size(188, 21);
+            this.tb_SKMap.Size = new System.Drawing.Size(188, 26);
             this.tb_SKMap.TabIndex = 5;
             // 
             // tb_SKText
             // 
-            this.tb_SKText.Location = new System.Drawing.Point(84, 455);
+            this.tb_SKText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tb_SKText.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tb_SKText.Location = new System.Drawing.Point(102, 469);
             this.tb_SKText.Name = "tb_SKText";
-            this.tb_SKText.Size = new System.Drawing.Size(188, 21);
+            this.tb_SKText.Size = new System.Drawing.Size(188, 26);
             this.tb_SKText.TabIndex = 6;
             // 
             // btn_addSK
             // 
-            this.btn_addSK.Location = new System.Drawing.Point(84, 482);
+            this.btn_addSK.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_addSK.Location = new System.Drawing.Point(102, 510);
             this.btn_addSK.Name = "btn_addSK";
-            this.btn_addSK.Size = new System.Drawing.Size(189, 23);
+            this.btn_addSK.Size = new System.Drawing.Size(188, 23);
             this.btn_addSK.TabIndex = 8;
             this.btn_addSK.Text = "保存";
             this.btn_addSK.UseVisualStyleBackColor = true;
@@ -137,14 +154,18 @@
             // 
             // cb_SKProcessName
             // 
+            this.cb_SKProcessName.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cb_SKProcessName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cb_SKProcessName.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cb_SKProcessName.FormattingEnabled = true;
-            this.cb_SKProcessName.Location = new System.Drawing.Point(85, 399);
+            this.cb_SKProcessName.Location = new System.Drawing.Point(103, 396);
             this.cb_SKProcessName.Name = "cb_SKProcessName";
-            this.cb_SKProcessName.Size = new System.Drawing.Size(187, 20);
+            this.cb_SKProcessName.Size = new System.Drawing.Size(187, 24);
             this.cb_SKProcessName.TabIndex = 9;
             // 
             // pic_move
             // 
+            this.pic_move.BackColor = System.Drawing.SystemColors.Control;
             this.pic_move.Cursor = System.Windows.Forms.Cursors.NoMove2D;
             this.pic_move.Image = global::ShortcutKeyRecord.Properties.Resources.平移;
             this.pic_move.Location = new System.Drawing.Point(563, 545);
@@ -159,7 +180,10 @@
             // 
             // gb_currentProcess
             // 
+            this.gb_currentProcess.BackColor = System.Drawing.Color.Transparent;
             this.gb_currentProcess.Controls.Add(this.p_currentProcess);
+            this.gb_currentProcess.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.gb_currentProcess.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.gb_currentProcess.Location = new System.Drawing.Point(12, 12);
             this.gb_currentProcess.Name = "gb_currentProcess";
             this.gb_currentProcess.Size = new System.Drawing.Size(560, 105);
@@ -177,7 +201,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.p_allProcess);
+            this.groupBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.groupBox1.Location = new System.Drawing.Point(12, 124);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(560, 196);
@@ -188,6 +215,7 @@
             // p_allProcess
             // 
             this.p_allProcess.AutoScroll = true;
+            this.p_allProcess.BackColor = System.Drawing.Color.Transparent;
             this.p_allProcess.Location = new System.Drawing.Point(6, 20);
             this.p_allProcess.Name = "p_allProcess";
             this.p_allProcess.Size = new System.Drawing.Size(548, 170);
@@ -197,6 +225,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(584, 567);
             this.ContextMenuStrip = this.cms_mouseBtnRight;
             this.ControlBox = false;

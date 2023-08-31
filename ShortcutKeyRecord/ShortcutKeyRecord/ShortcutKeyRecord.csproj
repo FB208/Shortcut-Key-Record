@@ -119,8 +119,8 @@
     <None Include="Resources\平移.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon %282%29.ico" />
     <Content Include="favicon.ico" />
+    <None Include="Resources\background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -60,6 +60,12 @@ namespace ShortcutKeyRecord
             this.BindAllKeymap();
             #endregion
 
+            //#region 样式
+            //foreach (Control ctrl in this.Controls)
+            //{
+            //    ctrl.BackColor = Color.Red;
+            //}
+            //#endregion
         }
 
         object IViewFor.ViewModel
