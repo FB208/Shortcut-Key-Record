@@ -138,6 +138,7 @@ namespace ShortcutKeyRecord
         #region 控件数据绑定
         private void BindAllKeymap()
         {
+            skConfig= skConfig.OrderBy(m=>m.ProcessName).ToList();
             this.p_allProcess.Controls.Clear();
             int row = 0;
             foreach (var sk in skConfig)
