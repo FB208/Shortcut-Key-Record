@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.lbl_currentProcess = new System.Windows.Forms.Label();
             this.cms_mouseBtnRight = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cms_t_fixedTop = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_t_config = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,18 +56,6 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_move)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lbl_currentProcess
-            // 
-            this.lbl_currentProcess.AutoSize = true;
-            this.lbl_currentProcess.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_currentProcess.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl_currentProcess.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbl_currentProcess.Location = new System.Drawing.Point(10, 333);
-            this.lbl_currentProcess.Name = "lbl_currentProcess";
-            this.lbl_currentProcess.Size = new System.Drawing.Size(55, 16);
-            this.lbl_currentProcess.TabIndex = 0;
-            this.lbl_currentProcess.Text = "label1";
             // 
             // cms_mouseBtnRight
             // 
@@ -222,17 +209,17 @@
             this.gb_currentProcess.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.gb_currentProcess.Location = new System.Drawing.Point(12, 12);
             this.gb_currentProcess.Name = "gb_currentProcess";
-            this.gb_currentProcess.Size = new System.Drawing.Size(560, 105);
+            this.gb_currentProcess.Size = new System.Drawing.Size(560, 168);
             this.gb_currentProcess.TabIndex = 11;
             this.gb_currentProcess.TabStop = false;
-            this.gb_currentProcess.Text = "groupBox1";
+            this.gb_currentProcess.Text = "ActiveProcessKey";
             // 
             // p_currentProcess
             // 
             this.p_currentProcess.AutoScroll = true;
             this.p_currentProcess.Location = new System.Drawing.Point(6, 20);
             this.p_currentProcess.Name = "p_currentProcess";
-            this.p_currentProcess.Size = new System.Drawing.Size(548, 79);
+            this.p_currentProcess.Size = new System.Drawing.Size(548, 142);
             this.p_currentProcess.TabIndex = 0;
             // 
             // groupBox1
@@ -241,7 +228,7 @@
             this.groupBox1.Controls.Add(this.p_allProcess);
             this.groupBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox1.Location = new System.Drawing.Point(12, 124);
+            this.groupBox1.Location = new System.Drawing.Point(12, 186);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(560, 196);
             this.groupBox1.TabIndex = 12;
@@ -291,7 +278,6 @@
             this.Controls.Add(this.lbl_SKGroupName);
             this.Controls.Add(this.lbl_SKText);
             this.Controls.Add(this.lbl_SKMap);
-            this.Controls.Add(this.lbl_currentProcess);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -307,8 +293,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lbl_currentProcess;
         private System.Windows.Forms.Label lbl_SKMap;
         private System.Windows.Forms.Label lbl_SKText;
         private System.Windows.Forms.Label lbl_SKGroupName;

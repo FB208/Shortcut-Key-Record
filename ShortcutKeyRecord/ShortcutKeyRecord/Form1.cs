@@ -21,6 +21,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.IO;
 using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
 
 namespace ShortcutKeyRecord
 {
@@ -32,7 +33,7 @@ namespace ShortcutKeyRecord
             InitializeComponent();
             this.WhenActivated(a =>
             {
-                this.Bind(ViewModel, vm => vm.CurrentProcessName, v => v.lbl_currentProcess.Text);
+                //this.Bind(ViewModel, vm => vm.CurrentProcessName, v => v.lbl_currentProcess.Text);
                 this.Bind(ViewModel, vm => vm.CurrentProcessName, v => v.gb_currentProcess.Text);
                 this.Bind(ViewModel, vm => vm.NewSKMap, v => v.tb_SKMap.Text);
                 this.Bind(ViewModel, vm => vm.NewSKText, v => v.tb_SKText.Text);
@@ -90,18 +91,27 @@ namespace ShortcutKeyRecord
                     GetWindowThreadProcessId(hWnd, out processId);
                     Process proc = Process.GetProcessById((int)processId);
 
-
+                    //监听活跃进程
                     gb_currentProcess.Invoke((Action)(() =>
                     {
+                        //历史进程下拉框中加入活跃进程
                         if (!ViewModel.ProcessNameList.Contains(proc.ProcessName))
                         {
                             ViewModel.ProcessNameList.Add(proc.ProcessName);
                         }
-                        ViewModel.CurrentProcessName = proc.ProcessName;
+                        //历史进程下拉框默认选中活跃进程
                         if (!proc.ProcessName.Equals("ShortcutKeyRecord"))
                         {
                             ViewModel.NewProcessName = proc.ProcessName;
                         }
+                        //当前进程
+                        if (!ViewModel.CurrentProcessName.Equals(proc.ProcessName))
+                        {
+                            ViewModel.CurrentProcessName = proc.ProcessName;
+                            this.BindActiveProcessKeymap();
+                        }
+
+
                     }));
 
                     Thread.Sleep(1000);
@@ -109,6 +119,8 @@ namespace ShortcutKeyRecord
             });
 
         }
+
+
 
         /// <summary>
         /// 重新加载用户配置
@@ -135,21 +147,67 @@ namespace ShortcutKeyRecord
                 {
                     string skMap = km.Map;
                     string skText = km.Text;
-                    Label lbl_Map = new Label() { Text=skMap,Size=new Size(150,20),Location=new Point(10,10+30*row) };
-                    Label lbl_Text = new Label() { Text = skText, Size = new Size(150, 20), Location = new Point(160, 10 + 30 * row) };
-                    Label lbl_Name = new Label() { Text = name, Size = new Size(150, 20), Location = new Point(320, 10 + 30 * row) };
+                    Button delButton = new Button()
+                    {
+                        Text = "X",
+                        Size = new Size(20, 20),
+                        Location = new Point(10, 10 + 30 * row),
+                        ForeColor = Color.Blue,
+                        Font = new Font("Arial", 6)
+                    };
+                    //删除指定快捷键
+                    delButton.Click += (sender,e) => {
+                        //更新并保存配置
+                        skConfig.Remove(sk);
+                        BindAllKeymap();
+                        string skString = JsonConvert.SerializeObject(skConfig);
+                        Properties.Settings.Default.KeyMapGroup = skString;
+                        Properties.Settings.Default.Save();
+                    };
+                    Label lbl_Map = new Label() { Text = skMap, Size = new Size(150, 20), Location = new Point(40, 10 + 30 * row) };
+                    Label lbl_Text = new Label() { Text = skText, Size = new Size(150, 20), Location = new Point(190, 10 + 30 * row) };
+                    Label lbl_Name = new Label() { Text = name, Size = new Size(150, 20), Location = new Point(350, 10 + 30 * row) };
+                    this.p_allProcess.Controls.Add(delButton);
                     this.p_allProcess.Controls.Add(lbl_Map);
                     this.p_allProcess.Controls.Add(lbl_Text);
                     this.p_allProcess.Controls.Add(lbl_Name);
                     row++;
                 }
-                
-            }        
+
+            }
+        }
+
+        /// <summary>
+        /// 绑定当前活跃的进程的快捷键
+        /// </summary>
+        private void BindActiveProcessKeymap()
+        {
+
+            this.p_currentProcess.Controls.Clear();
+            int row = 0;
+            bool left = true;
+            foreach (var sk in skConfig)
+            {
+                string name = sk.ProcessName;
+                foreach (var km in sk.KeyMap)
+                {
+                    string skMap = left ? km.Map : $"| {km.Map}";
+                    string skText = km.Text;
+                    Point mapPoint = new Point(left ? 10 : 260, 10 + 30 * (left ? row : (row - 1)));
+                    Point textPoint = new Point(left ? 120 : 390, 10 + 30 * (left ? row : (row - 1)));
+                    Label lbl_Map = new Label() { Text = skMap, Size = new Size(100, 20), Location = mapPoint };
+                    Label lbl_Text = new Label() { Text = skText, Size = new Size(120, 20), Location = textPoint };
+                    this.p_currentProcess.Controls.Add(lbl_Map);
+                    this.p_currentProcess.Controls.Add(lbl_Text);
+                    left = !left;
+                    row = left ? row : row + 1;
+                }
+            }
         }
         #endregion
 
         /// <summary>
-        /// 
+        /// 添加快捷键
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -163,7 +221,7 @@ namespace ShortcutKeyRecord
             keymap.Text = ViewModel.NewSKText;
             keymaps.Add(keymap);
             keyMapGroup.KeyMap = keymaps;
-            
+
             //更新并保存配置
             skConfig.Add(keyMapGroup);
             this.BindAllKeymap();
@@ -234,7 +292,7 @@ namespace ShortcutKeyRecord
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Config|*.config.json";
-            string inputPath="";
+            string inputPath = "";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 inputPath = dialog.FileName;
@@ -245,7 +303,7 @@ namespace ShortcutKeyRecord
             List<ExportModel> exportModels = JsonConvert.DeserializeObject<List<ExportModel>>(json);
             foreach (ExportModel exportModel in exportModels)
             {
-                Properties.Settings.Default[exportModel.Key]= Convert.ChangeType(exportModel.Value, Properties.Settings.Default[exportModel.Key].GetType());
+                Properties.Settings.Default[exportModel.Key] = Convert.ChangeType(exportModel.Value, Properties.Settings.Default[exportModel.Key].GetType());
             }
             Properties.Settings.Default.Save();
             this.LoadUserSetting();
@@ -295,6 +353,6 @@ namespace ShortcutKeyRecord
 
         #endregion
 
-      
+
     }
 }
