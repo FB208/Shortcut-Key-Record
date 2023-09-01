@@ -22,6 +22,7 @@ using System.Configuration;
 using System.IO;
 using static System.Net.Mime.MediaTypeNames;
 using System.Xml.Linq;
+using System.Resources;
 
 namespace ShortcutKeyRecord
 {
@@ -63,6 +64,23 @@ namespace ShortcutKeyRecord
             //    ctrl.BackColor = Color.Red;
             //}
             //#endregion
+
+
+            //隐藏任务栏图标
+            ShowInTaskbar = false;
+            //显示系统托盘图标
+            Icon icon = Properties.Resources.favicon;
+            NotifyIcon nIcon = new NotifyIcon();
+            nIcon.Text = "快捷键指示器";//鼠标悬停系统托盘上显示
+            nIcon.Icon = icon;//图标
+            nIcon.Visible = true;//设置图标可见
+            nIcon.ContextMenuStrip = cms_mouseBtnRight;
+            //this.nIcon.ShowBalloonTip(0x2710, "系统托盘提示", "请右键点击图标显示菜单，左键点击访问我的博客。", ToolTipIcon.Info);//托盘图标加载时提示
+            nIcon.Click += (sender, e) => {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+                this.Activate();
+            };
         }
 
         object IViewFor.ViewModel
