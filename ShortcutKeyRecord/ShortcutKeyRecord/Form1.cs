@@ -47,7 +47,7 @@ namespace ShortcutKeyRecord
                 this.Bind(ViewModel, vm => vm.NewProcessName, v => v.cb_SKProcessName.SelectedItem, selectionChanged);
 
                 //始终置顶
-                this.Bind(ViewModel, vm => vm.FixedTop, v => v.TopMost);
+                this.Bind(ViewModel, vm => vm.FixedTop, v => v.cms_t_fixedTop.Checked);
                 //a(this.OneWayBind(ViewModel, vm => vm.Id, v => v.label1.Text));
                 //a(this.OneWayBind(ViewModel, vm => vm.Name, v => v.label2.Text));
                 //a(this.OneWayBind(ViewModel, vm => vm.Age, v => v.label3.Text));
