@@ -76,7 +76,8 @@ namespace ShortcutKeyRecord
             nIcon.Visible = true;//设置图标可见
             nIcon.ContextMenuStrip = cms_mouseBtnRight;
             //this.nIcon.ShowBalloonTip(0x2710, "系统托盘提示", "请右键点击图标显示菜单，左键点击访问我的博客。", ToolTipIcon.Info);//托盘图标加载时提示
-            nIcon.Click += (sender, e) => {
+            nIcon.Click += (sender, e) =>
+            {
                 this.Show();
                 this.WindowState = FormWindowState.Normal;
                 this.Activate();
@@ -156,7 +157,7 @@ namespace ShortcutKeyRecord
         #region 控件数据绑定
         private void BindAllKeymap()
         {
-            skConfig= skConfig.OrderBy(m=>m.ProcessName).ToList();
+            skConfig = skConfig.OrderBy(m => m.ProcessName).ToList();
             this.p_allProcess.Controls.Clear();
             int row = 0;
             foreach (var sk in skConfig)
@@ -175,7 +176,8 @@ namespace ShortcutKeyRecord
                         Font = new Font("Arial", 6)
                     };
                     //删除指定快捷键
-                    delButton.Click += (sender,e) => {
+                    delButton.Click += (sender, e) =>
+                    {
                         //更新并保存配置
                         skConfig.Remove(sk);
                         BindAllKeymap();
@@ -208,18 +210,21 @@ namespace ShortcutKeyRecord
             foreach (var sk in skConfig)
             {
                 string name = sk.ProcessName;
-                foreach (var km in sk.KeyMap)
+                if (name.Equals(ViewModel.CurrentProcessName))
                 {
-                    string skMap = left ? km.Map : $"| {km.Map}";
-                    string skText = km.Text;
-                    Point mapPoint = new Point(left ? 10 : 260, 10 + 30 * (left ? row : (row - 1)));
-                    Point textPoint = new Point(left ? 120 : 390, 10 + 30 * (left ? row : (row - 1)));
-                    Label lbl_Map = new Label() { Text = skMap, Size = new Size(100, 20), Location = mapPoint };
-                    Label lbl_Text = new Label() { Text = skText, Size = new Size(120, 20), Location = textPoint };
-                    this.p_currentProcess.Controls.Add(lbl_Map);
-                    this.p_currentProcess.Controls.Add(lbl_Text);
-                    left = !left;
-                    row = left ? row : row + 1;
+                    foreach (var km in sk.KeyMap)
+                    {
+                        string skMap = left ? km.Map : $"| {km.Map}";
+                        string skText = km.Text;
+                        Point mapPoint = new Point(left ? 10 : 260, 10 + 30 * (left ? row : (row - 1)));
+                        Point textPoint = new Point(left ? 120 : 390, 10 + 30 * (left ? row : (row - 1)));
+                        Label lbl_Map = new Label() { Text = skMap, Size = new Size(100, 20), Location = mapPoint };
+                        Label lbl_Text = new Label() { Text = skText, Size = new Size(120, 20), Location = textPoint };
+                        this.p_currentProcess.Controls.Add(lbl_Map);
+                        this.p_currentProcess.Controls.Add(lbl_Text);
+                        left = !left;
+                        row = left ? row : row + 1;
+                    }
                 }
             }
         }
