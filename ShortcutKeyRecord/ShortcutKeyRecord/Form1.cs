@@ -50,12 +50,19 @@ namespace ShortcutKeyRecord
 
                 //始终置顶
                 this.Bind(ViewModel, vm => vm.FixedTop, v => v.cms_t_fixedTop.Checked);
+                this.Bind(ViewModel, vm => vm.FixedTop, v => v.TopMost);
                 //a(this.OneWayBind(ViewModel, vm => vm.Id, v => v.label1.Text));
                 //a(this.OneWayBind(ViewModel, vm => vm.Name, v => v.label2.Text));
                 //a(this.OneWayBind(ViewModel, vm => vm.Age, v => v.label3.Text));
             });
             ViewModel = new MainVM();
+            #region viewmodel监听
 
+            //ViewModel.WhenAnyValue(x => x.FixedTop).Subscribe(fixedTop =>
+            //{
+            //    this.TopMost = fixedTop;
+            //});
+            #endregion
 
             LoadUserSetting();
             //#region 样式
