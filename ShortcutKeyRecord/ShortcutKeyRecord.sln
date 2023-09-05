@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortcutKeyRecord", "ShortcutKeyRecord\ShortcutKeyRecord.csproj", "{C644D0F4-75A3-469F-9307-81FE005DE40A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortcutKeyRecordTests", "ShortcutKeyRecordTests\ShortcutKeyRecordTests.csproj", "{1697D211-587B-42CC-AA2E-3495E5B45BBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C644D0F4-75A3-469F-9307-81FE005DE40A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C644D0F4-75A3-469F-9307-81FE005DE40A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C644D0F4-75A3-469F-9307-81FE005DE40A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1697D211-587B-42CC-AA2E-3495E5B45BBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1697D211-587B-42CC-AA2E-3495E5B45BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1697D211-587B-42CC-AA2E-3495E5B45BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1697D211-587B-42CC-AA2E-3495E5B45BBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
